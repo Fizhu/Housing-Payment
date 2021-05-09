@@ -75,10 +75,16 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    context.read<UserBloc>().add(FetchUser());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Inventory'),
+          title: Text('Housing Payment'),
           centerTitle: true,
         ),
         bottomNavigationBar: _bottomAppBar(),
