@@ -7,6 +7,7 @@ import 'package:housing_payment/data/models/data.dart';
 import 'package:housing_payment/data/pref/pref.dart';
 import 'package:housing_payment/data/remote/rest_client.dart';
 import 'package:housing_payment/ui/home/home.dart';
+import 'package:housing_payment/utils/app_assets.dart';
 import 'package:housing_payment/utils/ext.dart';
 
 class LoginPage extends StatefulWidget {
@@ -136,8 +137,8 @@ class _LoginPageState extends State<LoginPage> {
                     Container(
                       height: _getHeight(),
                       child: SvgPicture.asset(
-                        'assets/images/illust_login.svg',
-                        semanticsLabel: 'Illust Login',
+                        AppAssets.illust_login,
+                        semanticsLabel: 'illust_login',
                       ),
                     ),
                     SizedBox(
