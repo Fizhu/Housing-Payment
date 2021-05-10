@@ -19,7 +19,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _passwordVisible;
-  String _noKontrak, _password;
+  String _username, _password;
   final _restClient = RestClient(Dio());
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
 
   _login() async {
     Ext.showLoading(context);
-    await _restClient.login(_noKontrak.trim(), _password).then((value) {
+    await _restClient.login(_username.trim(), _password).then((value) {
       log(value.toJson().toString());
       if (value.status) {
         Ext.dismissLoading(context);
@@ -149,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                         keyboardType: TextInputType.text,
                         textCapitalization: TextCapitalization.characters,
                         onSaved: (String value) {
-                          _noKontrak = value;
+                          _username = value;
                         },
                         validator: (value) {
                           if (value.isEmpty) {

@@ -17,12 +17,12 @@ class _RestClient implements RestClient {
   String baseUrl;
 
   @override
-  Future<ResponseData<dynamic>> login(noKontrak, password) async {
-    ArgumentError.checkNotNull(noKontrak, 'noKontrak');
+  Future<ResponseData<dynamic>> login(username, password) async {
+    ArgumentError.checkNotNull(username, 'username');
     ArgumentError.checkNotNull(password, 'password');
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _data = {'no_kontrak': noKontrak, 'password': password};
+    final _data = {'username': username, 'password': password};
     _data.removeWhere((k, v) => v == null);
     final _result = await _dio.request<Map<String, dynamic>>('user/login',
         queryParameters: queryParameters,

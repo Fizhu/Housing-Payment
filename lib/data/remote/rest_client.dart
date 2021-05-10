@@ -14,6 +14,6 @@ abstract class RestClient {
   @POST(ApiEndpoint.ENDPOINT_LOGIN)
   @FormUrlEncoded()
   Future<ResponseData> login(
-      @Field("no_kontrak") String noKontrak, @Field("password") String password);
+      @Field("username") String username, @Field("password") String password);
 
 }

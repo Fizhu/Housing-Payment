@@ -30,7 +30,6 @@ class ResponseList {
   @JsonKey(name: 'data')
   final List<dynamic> list;
 
-
   ResponseList(this.status, this.message, this.total, this.list);
 
   factory ResponseList.fromJson(Map<String, dynamic> json) =>
@@ -45,17 +44,23 @@ class User {
   final int id;
   @JsonKey(name: 'name')
   final String name;
-  @JsonKey(name: 'no_kontrak')
-  final String no_kontrak;
+  @JsonKey(name: 'username')
+  final String username;
   @JsonKey(name: 'password')
   final String password;
   @JsonKey(name: 'role')
   final String role;
 
-  User(this.id, this.name, this.no_kontrak, this.password, this.role);
+  User(this.id, this.name, this.username, this.password, this.role);
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 }
 
+class HomeMenu {
+  final String title;
+  final String icon;
+
+  HomeMenu(this.title, this.icon);
+}
