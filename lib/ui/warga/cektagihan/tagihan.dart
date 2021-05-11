@@ -24,6 +24,42 @@ class _TagihanPageState extends State<TagihanPage> {
         style: TextStyle(fontSize: 12.0, color: Colors.red[200]),
       );
 
+  _itemContent(String title, String value) => [
+        _textTitle(title),
+        SizedBox(
+          height: 4.0,
+        ),
+        Text(value),
+      ];
+
+  _leftContent() {
+    List<Widget> list = [];
+    list.addAll(_itemContent("Stan Meter Awal", '20.000'));
+    list.add(SizedBox(height: 16.0,));
+    list.addAll(_itemContent("Stan Meter Awal", '20.000'));
+    list.add(SizedBox(height: 16.0,));
+    list.addAll(_itemContent("Stan Meter Awal", '20.000'));
+    list.add(SizedBox(height: 16.0,));
+    list.addAll(_itemContent("Stan Meter Awal", '20.000'));
+    list.add(SizedBox(height: 16.0,));
+    list.addAll(_itemContent("Stan Meter Awal", '20.000'));
+    return list;
+  }
+
+  _rightContent() {
+    List<Widget> list = [];
+    list.addAll(_itemContent("Keamanan", '10.000'));
+    list.add(SizedBox(height: 16.0,));
+    list.addAll(_itemContent("Keamanan", '10.000'));
+    list.add(SizedBox(height: 16.0,));
+    list.addAll(_itemContent("Keamanan", '10.000'));
+    list.add(SizedBox(height: 16.0,));
+    list.addAll(_itemContent("Keamanan", '10.000'));
+    list.add(SizedBox(height: 16.0,));
+    list.addAll(_itemContent("Keamanan", '10.000'));
+    return list;
+  }
+
   Widget _tagihanContent() {
     return SingleChildScrollView(
       child: ConstrainedBox(
@@ -42,7 +78,9 @@ class _TagihanPageState extends State<TagihanPage> {
                   'Rincian Tagihan ' + _formatter.format(_now),
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 24.0,),
+                SizedBox(
+                  height: 24.0,
+                ),
                 Row(
                   children: [
                     Expanded(
@@ -50,22 +88,14 @@ class _TagihanPageState extends State<TagihanPage> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            _textTitle('Stan Meter Awal'),
-                            SizedBox(height: 4.0,),
-                            Text('20.000'),
-                          ],
+                          children: _leftContent()
                         )),
                     Expanded(
                         flex: 1,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            _textTitle('Stan Meter Keamanan'),
-                            SizedBox(height: 4.0,),
-                            Text('20.000'),
-                          ],
+                          children: _rightContent()
                         )),
                   ],
                 ),
@@ -81,9 +111,7 @@ class _TagihanPageState extends State<TagihanPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      body: SafeArea(
-        child: _tagihanContent()
-      ),
+      body: SafeArea(child: _tagihanContent()),
     );
   }
 }
