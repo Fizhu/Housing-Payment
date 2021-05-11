@@ -59,8 +59,9 @@ class User {
 }
 
 class HomeMenu {
+  final String id;
   final String title;
   final String icon;
 
-  HomeMenu(this.title, this.icon);
+  HomeMenu(this.id, this.title, this.icon);
 }

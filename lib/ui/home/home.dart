@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:housing_payment/bloc/user/user_bloc.dart';
 import 'package:housing_payment/data/models/data.dart';
 import 'package:housing_payment/data/pref/pref.dart';
+import 'package:housing_payment/ui/cs/cs.dart';
 import 'package:housing_payment/ui/login/login.dart';
 import 'package:housing_payment/utils/app_assets.dart';
 import 'package:housing_payment/utils/ext.dart';
@@ -20,15 +21,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<HomeMenu> _listAdminMenu = [
-    HomeMenu("Input Tagihan", AppAssets.ic_pen),
-    HomeMenu("List Tagihan", AppAssets.ic_file13),
-    HomeMenu("History", AppAssets.ic_clock),
+    HomeMenu("adm_menu_1", "Input Tagihan", AppAssets.ic_pen),
+    HomeMenu("adm_menu_2", "List Tagihan", AppAssets.ic_file13),
+    HomeMenu("adm_menu_3", "History", AppAssets.ic_clock),
   ];
   List<HomeMenu> _listWargaMenu = [
-    HomeMenu("Cek Tagihan", AppAssets.ic_file17),
-    HomeMenu("History", AppAssets.ic_clock),
-    HomeMenu("Hubungi Kami", AppAssets.ic_good_feedback),
-    HomeMenu("Inbox", AppAssets.ic_mail),
+    HomeMenu("wrg_menu_1", "Cek Tagihan", AppAssets.ic_file17),
+    HomeMenu("wrg_menu_2", "History", AppAssets.ic_clock),
+    HomeMenu("wrg_menu_3", "Hubungi Kami", AppAssets.ic_good_feedback),
+    HomeMenu("wrg_menu_4", "Inbox", AppAssets.ic_mail),
   ];
 
   Widget _header() {
@@ -144,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                     child: InkWell(
                       splashColor: Colors.orangeAccent.withAlpha(30),
                       onTap: () {
-                        Ext.toast(menu.title);
+                        onClickMenu(context, menu.id);
                       },
                       child: Container(
                         padding: EdgeInsets.all(16.0),
@@ -157,14 +158,38 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                Text(menu.title,
-                style: TextStyle(
-                  fontSize: 12.0
-                ),),
+                Text(
+                  menu.title,
+                  style: TextStyle(fontSize: 12.0),
+                ),
               ],
             ),
           );
         });
+  }
+
+  onClickMenu(BuildContext context, String id) {
+    if (id == _listAdminMenu[0].id) {
+      // Navigator.pushNamed(context, CsPage.routeName);
+    }
+    if (id == _listAdminMenu[1].id) {
+      // Navigator.pushNamed(context, CsPage.routeName);
+    }
+    if (id == _listAdminMenu[2].id) {
+      // Navigator.pushNamed(context, CsPage.routeName);
+    }
+    if (id == _listWargaMenu[0].id) {
+      // Navigator.pushNamed(context, CsPage.routeName);
+    }
+    if (id == _listWargaMenu[1].id) {
+      // Navigator.pushNamed(context, CsPage.routeName);
+    }
+    if (id == _listWargaMenu[2].id) {
+      Navigator.pushNamed(context, CsPage.routeName);
+    }
+    if (id == _listWargaMenu[3].id) {
+      // Navigator.pushNamed(context, CsPage.routeName);
+    }
   }
 
   Widget _getListMenu() {
@@ -201,8 +226,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-
-
   @override
   void initState() {
     super.initState();
@@ -215,7 +238,8 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height-(16.0*2)),
+            constraints: BoxConstraints(
+                minHeight: MediaQuery.of(context).size.height - (16.0 * 2)),
             child: IntrinsicHeight(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -231,8 +255,8 @@ class _HomePageState extends State<HomePage> {
                     child: Container(
                       padding: EdgeInsets.fromLTRB(48.0, 16.0, 48.0, 16.0),
                       height: _getHeight(),
-                      child:
-                          BlocBuilder<UserBloc, UserState>(builder: (context, state) {
+                      child: BlocBuilder<UserBloc, UserState>(
+                          builder: (context, state) {
                         if (state is UserExisted) {
                           if (state.user.role == "admin") {
                             return SvgPicture.asset(

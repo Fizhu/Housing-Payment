@@ -39,4 +39,10 @@ class Ext {
   }
 
   static dismissLoading(BuildContext context) => Navigator.pop(context);
+
+  static matchParentHeight(BuildContext context) =>
+      MediaQuery.of(context).size.height;
+
+  static matchParentWidth(BuildContext context) =>
+      MediaQuery.of(context).size.width;
 }
