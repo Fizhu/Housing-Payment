@@ -127,27 +127,41 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, position) {
           var menu = list[position];
           return Container(
-            child: Card(
-              color: Colors.red[200],
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              margin: EdgeInsets.all(8.0),
-              semanticContainer: true,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4.0)),
-              child: InkWell(
-                splashColor: Colors.orangeAccent.withAlpha(30),
-                onTap: () {
-                  Ext.toast(menu.title);
-                },
-                child: Container(
-                  padding: EdgeInsets.all(16.0),
-                  height: 16.0,
-                  child: SvgPicture.asset(
-                    menu.icon,
-                    semanticsLabel: menu.title,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 80.0,
+                  child: Card(
+                    color: Colors.red[200],
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    margin: EdgeInsets.all(8.0),
+                    semanticContainer: true,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4.0)),
+                    child: InkWell(
+                      splashColor: Colors.orangeAccent.withAlpha(30),
+                      onTap: () {
+                        Ext.toast(menu.title);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(16.0),
+                        height: 16.0,
+                        child: SvgPicture.asset(
+                          menu.icon,
+                          semanticsLabel: menu.title,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                Text(menu.title,
+                style: TextStyle(
+                  fontSize: 12.0
+                ),),
+              ],
             ),
           );
         });
@@ -179,11 +193,11 @@ class _HomePageState extends State<HomePage> {
     if (MediaQuery.of(context).orientation == Orientation.landscape) {
       return MediaQuery.of(context).size.width /
           MediaQuery.of(context).size.height /
-          0.50;
+          0.55;
     } else {
       return MediaQuery.of(context).size.width /
           MediaQuery.of(context).size.height /
-          0.25;
+          0.30;
     }
   }
 
