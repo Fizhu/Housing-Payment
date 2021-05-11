@@ -7,10 +7,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:housing_payment/bloc/user/user_bloc.dart';
 import 'package:housing_payment/data/models/data.dart';
 import 'package:housing_payment/data/pref/pref.dart';
-import 'package:housing_payment/ui/cs/cs.dart';
+import 'package:housing_payment/ui/warga/cektagihan/tagihan.dart';
+import 'package:housing_payment/ui/warga/cs/cs.dart';
 import 'package:housing_payment/ui/login/login.dart';
 import 'package:housing_payment/utils/app_assets.dart';
-import 'package:housing_payment/utils/ext.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home';
@@ -179,7 +179,7 @@ class _HomePageState extends State<HomePage> {
       // Navigator.pushNamed(context, CsPage.routeName);
     }
     if (id == _listWargaMenu[0].id) {
-      // Navigator.pushNamed(context, CsPage.routeName);
+      Navigator.pushNamed(context, TagihanPage.routeName);
     }
     if (id == _listWargaMenu[1].id) {
       // Navigator.pushNamed(context, CsPage.routeName);
