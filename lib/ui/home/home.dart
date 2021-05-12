@@ -10,6 +10,7 @@ import 'package:housing_payment/data/pref/pref.dart';
 import 'package:housing_payment/ui/warga/cektagihan/tagihan.dart';
 import 'package:housing_payment/ui/warga/cs/cs.dart';
 import 'package:housing_payment/ui/login/login.dart';
+import 'package:housing_payment/utils/Sizes.dart';
 import 'package:housing_payment/utils/app_assets.dart';
 
 class HomePage extends StatefulWidget {
@@ -206,14 +207,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  double _getHeight() {
-    if (MediaQuery.of(context).orientation == Orientation.landscape) {
-      return MediaQuery.of(context).size.height / 2;
-    } else {
-      return MediaQuery.of(context).size.height / 5;
-    }
-  }
-
   double _getAspectRatio() {
     if (MediaQuery.of(context).orientation == Orientation.landscape) {
       return MediaQuery.of(context).size.width /
@@ -237,56 +230,49 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-                minHeight: MediaQuery.of(context).size.height - (16.0 * 2)),
-            child: IntrinsicHeight(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  _header(),
-                  Divider(),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(48.0, 16.0, 48.0, 16.0),
-                      height: _getHeight(),
-                      child: BlocBuilder<UserBloc, UserState>(
-                          builder: (context, state) {
-                        if (state is UserExisted) {
-                          if (state.user.role == "admin") {
-                            return SvgPicture.asset(
-                              AppAssets.illust_data_report,
-                              semanticsLabel: AppAssets.illust_data_report,
-                            );
-                          } else {
-                            return SvgPicture.asset(
-                              AppAssets.illust_smart_home,
-                              semanticsLabel: AppAssets.illust_smart_home,
-                            );
-                          }
-                        } else {
-                          return Text('Something went wrong');
-                        }
-                      }),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-                  Container(
-                    alignment: Alignment.bottomCenter,
-                    height: 250.0,
-                    padding: EdgeInsets.all(16.0),
-                    child: _getListMenu(),
-                  )
-                ],
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _header(),
+              Divider(),
+              SizedBox(
+                height: 16.0,
               ),
-            ),
+              Flexible(
+                fit: FlexFit.loose,
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(48.0, 16.0, 48.0, 16.0),
+                  height: MediaQuery.of(context).size.height / 2,
+                  child: BlocBuilder<UserBloc, UserState>(
+                      builder: (context, state) {
+                    if (state is UserExisted) {
+                      if (state.user.role == "admin") {
+                        return SvgPicture.asset(
+                          AppAssets.illust_data_report,
+                          semanticsLabel: AppAssets.illust_data_report,
+                        );
+                      } else {
+                        return SvgPicture.asset(
+                          AppAssets.illust_smart_home,
+                          semanticsLabel: AppAssets.illust_smart_home,
+                        );
+                      }
+                    } else {
+                      return Text('Something went wrong');
+                    }
+                  }),
+                ),
+              ),
+              SizedBox(
+                height: 16.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: _getListMenu(),
+              )
+            ],
           ),
         ),
       ),
