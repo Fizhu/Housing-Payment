@@ -55,3 +55,43 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'password': instance.password,
       'role': instance.role,
     };
+
+Tagihan _$TagihanFromJson(Map<String, dynamic> json) {
+  return Tagihan(
+    json['id'] as int,
+    json['user_id'] as int,
+    json['stan_meter_awal'] as int,
+    json['stan_meter_akhir'] as int,
+    json['penggunaan'] as int,
+    json['tagihan_air'] as int,
+    json['sampah'] as int,
+    json['keamanan'] as int,
+    json['admin'] as int,
+    json['sub_total_tagihan'] as int,
+    json['denda'] as int,
+    json['grand_total'] as int,
+    json['date'] as String,
+    json['status'] as int,
+    json['name'] as String,
+    json['username'] as String,
+  );
+}
+
+Map<String, dynamic> _$TagihanToJson(Tagihan instance) => <String, dynamic>{
+      'id': instance.id,
+      'user_id': instance.user_id,
+      'stan_meter_awal': instance.stan_meter_awal,
+      'stan_meter_akhir': instance.stan_meter_akhir,
+      'penggunaan': instance.penggunaan,
+      'tagihan_air': instance.tagihan_air,
+      'sampah': instance.sampah,
+      'keamanan': instance.keamanan,
+      'admin': instance.admin,
+      'sub_total_tagihan': instance.sub_total_tagihan,
+      'denda': instance.denda,
+      'grand_total': instance.grand_total,
+      'date': instance.date,
+      'status': instance.status,
+      'name': instance.name,
+      'username': instance.username,
+    };

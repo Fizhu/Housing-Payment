@@ -58,6 +58,64 @@ class User {
   Map<String, dynamic> toJson() => _$UserToJson(this);
 }
 
+@JsonSerializable()
+class Tagihan {
+  @JsonKey(name: 'id')
+  final int id;
+  @JsonKey(name: 'user_id')
+  final int user_id;
+  @JsonKey(name: 'stan_meter_awal')
+  final int stan_meter_awal;
+  @JsonKey(name: 'stan_meter_akhir')
+  final int stan_meter_akhir;
+  @JsonKey(name: 'penggunaan')
+  final int penggunaan;
+  @JsonKey(name: 'tagihan_air')
+  final int tagihan_air;
+  @JsonKey(name: 'sampah')
+  final int sampah;
+  @JsonKey(name: 'keamanan')
+  final int keamanan;
+  @JsonKey(name: 'admin')
+  final int admin;
+  @JsonKey(name: 'sub_total_tagihan')
+  final int sub_total_tagihan;
+  @JsonKey(name: 'denda')
+  final int denda;
+  @JsonKey(name: 'grand_total')
+  final int grand_total;
+  @JsonKey(name: 'date')
+  final String date;
+  @JsonKey(name: 'status')
+  final int status;
+  @JsonKey(name: 'name')
+  final String name;
+  @JsonKey(name: 'username')
+  final String username;
+
+  Tagihan(
+      this.id,
+      this.user_id,
+      this.stan_meter_awal,
+      this.stan_meter_akhir,
+      this.penggunaan,
+      this.tagihan_air,
+      this.sampah,
+      this.keamanan,
+      this.admin,
+      this.sub_total_tagihan,
+      this.denda,
+      this.grand_total,
+      this.date,
+      this.status,
+      this.name,
+      this.username);
+
+  factory Tagihan.fromJson(Map<String, dynamic> json) => _$TagihanFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TagihanToJson(this);
+}
+
 class HomeMenu {
   final String id;
   final String title;
