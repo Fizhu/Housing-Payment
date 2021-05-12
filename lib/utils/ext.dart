@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 
 class Ext {
   static handleError(String toastMessage, String errorMessage) {
@@ -45,4 +46,14 @@ class Ext {
 
   static matchParentWidth(BuildContext context) =>
       MediaQuery.of(context).size.width;
+
+  static String toRupiah(int nominal) {
+    final formatCurrency = new NumberFormat.simpleCurrency(locale: 'id_ID', decimalDigits: 0);
+    return formatCurrency.format(nominal);
+  }
+
+  static String toCommaFormat(int nominal) {
+    final formatCurrency = new NumberFormat.simpleCurrency(locale: 'id_ID', decimalDigits: 0, name: '');
+    return formatCurrency.format(nominal);
+  }
 }
