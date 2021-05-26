@@ -189,16 +189,21 @@ class _TagihanPageState extends State<TagihanPage> {
           left: 0.0,
           child: SizedBox(
             width: Sizes.matchParentWidth(context),
-            child: TextButton(
+            child: ElevatedButton(
               onPressed: () {
                 Ext.toast('This feature under development');
               },
               child: Text(
-                'Bayar Sekarang',
+                'BAYAR SEKARANG',
                 style: TextStyle(
-                    color: Colors.grey[900], fontWeight: FontWeight.bold,),
+                    color: Colors.grey[900], fontWeight: FontWeight.bold),
               ),
-              style: ElevatedButton.styleFrom(primary: Colors.white, onPrimary: Colors.grey, padding: EdgeInsets.all(16.0)),
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  onPrimary: Colors.grey,
+                  padding: EdgeInsets.all(16.0),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(0)))),
             ),
           ),
         ),
