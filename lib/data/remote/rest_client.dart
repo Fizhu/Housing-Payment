@@ -7,7 +7,7 @@ import 'api_endpoint.dart';
 
 part 'rest_client.g.dart';
 
-@RestApi(baseUrl: AppConstant.BASE_URL)
+@RestApi(baseUrl: AppConstant.BASE_URL_IP)
 abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 

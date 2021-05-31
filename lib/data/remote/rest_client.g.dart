@@ -9,7 +9,7 @@ part of 'rest_client.dart';
 class _RestClient implements RestClient {
   _RestClient(this._dio, {this.baseUrl}) {
     ArgumentError.checkNotNull(_dio, '_dio');
-    baseUrl ??= 'https://ec2-23-21-216-153.compute-1.amazonaws.com:3000/';
+    baseUrl ??= 'https://23.21.216.153:3000/';
   }
 
   final Dio _dio;
