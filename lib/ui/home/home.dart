@@ -12,6 +12,7 @@ import 'package:housing_payment/ui/warga/cs/cs.dart';
 import 'package:housing_payment/ui/login/login.dart';
 import 'package:housing_payment/utils/Sizes.dart';
 import 'package:housing_payment/utils/app_assets.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home';
@@ -130,12 +131,13 @@ class _HomePageState extends State<HomePage> {
           var menu = list[position];
           return Container(
             child: Column(
-              mainAxisSize: MainAxisSize.max,
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   height: 80.0,
+                  width: Sizes.matchParentWidth(context),
                   child: Card(
                     color: Colors.red[200],
                     clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -208,14 +210,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   double _getAspectRatio() {
-    if (MediaQuery.of(context).orientation == Orientation.landscape) {
+    if (kIsWeb) {
       return MediaQuery.of(context).size.width /
           MediaQuery.of(context).size.height /
-          0.55;
+          0.20;
     } else {
-      return MediaQuery.of(context).size.width /
-          MediaQuery.of(context).size.height /
-          0.30;
+      if (MediaQuery.of(context).orientation == Orientation.landscape) {
+        return MediaQuery.of(context).size.width /
+            MediaQuery.of(context).size.height /
+            0.55;
+      } else {
+        return MediaQuery.of(context).size.width /
+            MediaQuery.of(context).size.height /
+            0.30;
+      }
     }
   }
 
