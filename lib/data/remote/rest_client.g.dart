@@ -9,7 +9,7 @@ part of 'rest_client.dart';
 class _RestClient implements RestClient {
   _RestClient(this._dio, {this.baseUrl}) {
     ArgumentError.checkNotNull(_dio, '_dio');
-    baseUrl ??= 'https://23.21.216.153:3000/';
+    baseUrl ??= 'https://housingpayment.redrubygroup.com/';
   }
 
   final Dio _dio;
@@ -28,13 +28,7 @@ class _RestClient implements RestClient {
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'POST',
-            headers: <String, dynamic>{
-              r'Access-Control-Allow-Origin': '*',
-              r'Vary': 'Origin',
-              r'Access-Control-Allow-Headers':
-                  'Content-Type, Origin, Accept, token',
-              r'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
-            },
+            headers: <String, dynamic>{},
             extra: _extra,
             contentType: 'application/x-www-form-urlencoded',
             baseUrl: baseUrl),
