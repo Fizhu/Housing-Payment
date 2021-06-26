@@ -9,11 +9,11 @@ part 'rest_client.g.dart';
 
 @RestApi(baseUrl: AppConstant.BASE_URL)
 abstract class RestClient {
-  factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
+  factory RestClient(Dio dio, {String? baseUrl}) = _RestClient;
 
   @POST(ApiEndpoint.ENDPOINT_LOGIN)
   @FormUrlEncoded()
   Future<ResponseData> login(
-      @Field("username") String username, @Field("password") String password);
+      @Field("username") String? username, @Field("password") String? password);
 
 }

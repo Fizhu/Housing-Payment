@@ -5,11 +5,11 @@ part 'data.g.dart';
 @JsonSerializable()
 class ResponseData<T> {
   @JsonKey(name: 'status')
-  final bool status;
+  final bool? status;
   @JsonKey(name: 'message')
-  final String message;
+  final String? message;
   @JsonKey(name: 'data')
-  final Map<String, dynamic> data;
+  final Map<String, dynamic>? data;
 
   ResponseData({this.status, this.message, this.data});
 

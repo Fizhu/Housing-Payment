@@ -18,8 +18,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool _passwordVisible;
-  String _username, _password;
+  bool _passwordVisible = false;
+  String? _username, _password;
   final _restClient = RestClient(Dio());
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -40,22 +40,27 @@ class _LoginPageState extends State<LoginPage> {
 
   _login() async {
     Ext.showLoading(context);
-    await _restClient.login(_username.trim(), _password).then((value) {
+    await _restClient.login(_username?.trim(), _password).then((value) {
       log(value.toJson().toString());
-      if (value.status) {
+      if (value.status!) {
         Ext.dismissLoading(context);
-        User _user = User.fromJson(value.data);
-        _successLogin(_user);
+        if (value.data != null) {
+          User _user = User.fromJson(value.data!);
+          _successLogin(_user);
+        } else {
+          Ext.dismissLoading(context);
+          Ext.toast(value.message ?? "Something when wrong");
+        }
       } else {
         Ext.dismissLoading(context);
-        Ext.toast(value.message);
+        Ext.toast(value.message ?? "");
       }
     }, onError: (e, s) {
       Ext.dismissLoading(context);
-      if (e.type == DioErrorType.CONNECT_TIMEOUT ||
-          e.type == DioErrorType.RECEIVE_TIMEOUT) {
+      if (e.type == DioErrorType.connectTimeout ||
+          e.type == DioErrorType.receiveTimeout) {
         Ext.handleError('Connection Timeout', e.message);
-      } else if (e.type == DioErrorType.DEFAULT) {
+      } else if (e.type == DioErrorType.other) {
         Ext.handleError(
             'Connection Problem', e.message + '\n' + 'StackTrace : $s');
       } else {
@@ -66,8 +71,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _handleSubmit() async {
-    final FormState form = _formKey.currentState;
-    if (form.validate()) {
+    final FormState? form = _formKey.currentState;
+    if (form!.validate()) {
       form.save();
       _login();
     }
@@ -84,11 +89,13 @@ class _LoginPageState extends State<LoginPage> {
       child: TextFormField(
         keyboardType: TextInputType.text,
         obscureText: !_passwordVisible,
-        onSaved: (String value) {
+        onSaved: (String? value) {
           _password = value;
         },
         validator: (value) {
-          if (value.isEmpty) {
+          if (value != null) {
+            return 'Password is Required';
+          } else if (value!.isNotEmpty) {
             return 'Password is Required';
           } else if (value.length < 6) {
             return 'Password should contains more then 5 character';
@@ -148,11 +155,13 @@ class _LoginPageState extends State<LoginPage> {
                       child: TextFormField(
                         keyboardType: TextInputType.text,
                         textCapitalization: TextCapitalization.characters,
-                        onSaved: (String value) {
+                        onSaved: (String? value) {
                           _username = value;
                         },
                         validator: (value) {
-                          if (value.isEmpty) {
+                          if (value != null) {
+                            return 'Username is Required';
+                          } else if (value!.isEmpty) {
                             return 'Username is Required';
                           } else {
                             return null;

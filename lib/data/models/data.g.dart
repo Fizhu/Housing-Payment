@@ -8,9 +8,9 @@ part of 'data.dart';
 
 ResponseData<T> _$ResponseDataFromJson<T>(Map<String, dynamic> json) {
   return ResponseData<T>(
-    status: json['status'] as bool,
-    message: json['message'] as String,
-    data: json['data'] as Map<String, dynamic>,
+    status: json['status'] as bool?,
+    message: json['message'] as String?,
+    data: json['data'] as Map<String, dynamic>?,
   );
 }
 
@@ -26,7 +26,7 @@ ResponseList _$ResponseListFromJson(Map<String, dynamic> json) {
     json['status'] as bool,
     json['message'] as String,
     json['total'] as int,
-    json['data'] as List,
+    json['data'] as List<dynamic>,
   );
 }
 

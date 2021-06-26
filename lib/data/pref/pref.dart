@@ -22,9 +22,14 @@ class UserPref {
     prefs.setString(_PREF_USER, json.encode(user));
   }
 
-  static Future<User> getUser() async {
+  static Future<User?> getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return User.fromJson(json.decode(prefs.getString(_PREF_USER)));
+    var user = prefs.getString(_PREF_USER);
+    if (user != null) {
+      return User.fromJson(json.decode(user));
+    } else {
+      return null;
+    }
   }
 
   static clearData() async {

@@ -5,7 +5,7 @@ import 'package:housing_payment/data/remote/rest_client.dart';
 import 'package:housing_payment/data/repository/repository.dart';
 
 class AppRepository implements Repository {
-  RestClient _restClient;
+  late RestClient _restClient;
 
   AppRepository() {
     _restClient = RestClient(Dio());
@@ -16,7 +16,7 @@ class AppRepository implements Repository {
       _restClient.login(email, password);
 
   @override
-  Future<User> getUser() async => UserPref.getUser();
+  Future<User?> getUser() async => UserPref.getUser();
 
   @override
   saveUser(User user) async => UserPref.setUser(user);
