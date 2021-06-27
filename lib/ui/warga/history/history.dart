@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:housing_payment/data/models/data.dart';
+import 'package:housing_payment/utils/ext.dart';
 
 class HistoryPage extends StatefulWidget {
   static const routeName = '/history';
@@ -83,7 +84,7 @@ class _HistoryPageState extends State<HistoryPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                              'Tagihan ${DateTime.parse(data.date).month} ${DateTime.parse(data.date).year}'),
+                              'Tagihan ${Ext.parseStringDate(data.date, Ext.DATE_FORMAT_MMMM_YYYY)}'),
                           SizedBox(
                             height: 4.0,
                           ),

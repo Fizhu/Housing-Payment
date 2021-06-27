@@ -48,12 +48,21 @@ class Ext {
       MediaQuery.of(context).size.width;
 
   static String toRupiah(int nominal) {
-    final formatCurrency = new NumberFormat.simpleCurrency(locale: 'id_ID', decimalDigits: 0);
+    final formatCurrency =
+        new NumberFormat.simpleCurrency(locale: 'id_ID', decimalDigits: 0);
     return formatCurrency.format(nominal);
   }
 
   static String toCommaFormat(int nominal) {
-    final formatCurrency = new NumberFormat.simpleCurrency(locale: 'id_ID', decimalDigits: 0, name: '');
+    final formatCurrency = new NumberFormat.simpleCurrency(
+        locale: 'id_ID', decimalDigits: 0, name: '');
     return formatCurrency.format(nominal);
   }
+
+  static String parseStringDate(String date, String dateFormat) {
+    DateTime dateTime = DateTime.parse(date);
+    return DateFormat(dateFormat).format(dateTime).toString();
+  }
+
+  static const DATE_FORMAT_MMMM_YYYY = 'MMMM yyyy';
 }
