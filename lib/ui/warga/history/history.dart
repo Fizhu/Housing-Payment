@@ -57,37 +57,50 @@ class _HistoryPageState extends State<HistoryPage> {
   }
 
   _listHistory(BuildContext context, List<Tagihan> list) {
-    return ListView.builder(itemBuilder: (BuildContext context, int index) {
-      var data = list[index];
-      return Container(
-        child: InkWell(
-          splashColor: Colors.blueAccent.withAlpha(30),
-          onTap: () {
-            //handle onclick;
-          },
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.credit_card_rounded,
-                    color: Colors.grey[900],
-                  ),
-                  Column(
+    return ListView.builder(
+      itemBuilder: (BuildContext context, int index) {
+        var data = list[index];
+        return Container(
+          child: InkWell(
+            splashColor: Colors.redAccent.withAlpha(30),
+            onTap: () {
+              //handle onclick;
+            },
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
                     children: [
-                      Text(
-                          'Tagihan ${DateTime.parse(data.date).month} ${DateTime.parse(data.date).year}'),
-                      _textStatus(data.status)
+                      Icon(
+                        Icons.credit_card_rounded,
+                        color: Colors.white70,
+                      ),
+                      SizedBox(
+                        width: 16.0,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                              'Tagihan ${DateTime.parse(data.date).month} ${DateTime.parse(data.date).year}'),
+                          SizedBox(
+                            height: 4.0,
+                          ),
+                          _textStatus(data.status)
+                        ],
+                      )
                     ],
-                  )
-                ],
-              ),
-              Divider()
-            ],
+                  ),
+                ),
+                Divider(height: 2.0)
+              ],
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+      itemCount: list.length,
+    );
   }
 
   _tagihanDummy(int? status) => Tagihan(

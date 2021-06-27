@@ -10,6 +10,7 @@ import 'package:housing_payment/data/pref/pref.dart';
 import 'package:housing_payment/ui/warga/cektagihan/tagihan.dart';
 import 'package:housing_payment/ui/warga/cs/cs.dart';
 import 'package:housing_payment/ui/login/login.dart';
+import 'package:housing_payment/ui/warga/history/history.dart';
 import 'package:housing_payment/utils/Sizes.dart';
 import 'package:housing_payment/utils/app_assets.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -185,7 +186,7 @@ class _HomePageState extends State<HomePage> {
       Navigator.pushNamed(context, TagihanPage.routeName);
     }
     if (id == _listWargaMenu[1].id) {
-      // Navigator.pushNamed(context, CsPage.routeName);
+      Navigator.pushNamed(context, HistoryPage.routeName);
     }
     if (id == _listWargaMenu[2].id) {
       Navigator.pushNamed(context, CsPage.routeName);
