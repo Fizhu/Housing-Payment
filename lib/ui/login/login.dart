@@ -93,9 +93,9 @@ class _LoginPageState extends State<LoginPage> {
           _password = value;
         },
         validator: (value) {
-          if (value != null) {
+          if (value == null) {
             return 'Password is Required';
-          } else if (value!.isNotEmpty) {
+          } else if (value.isEmpty) {
             return 'Password is Required';
           } else if (value.length < 6) {
             return 'Password should contains more then 5 character';
@@ -159,9 +159,9 @@ class _LoginPageState extends State<LoginPage> {
                           _username = value;
                         },
                         validator: (value) {
-                          if (value != null) {
+                          if (value == null) {
                             return 'Username is Required';
-                          } else if (value!.isEmpty) {
+                          } else if (value.isEmpty) {
                             return 'Username is Required';
                           } else {
                             return null;

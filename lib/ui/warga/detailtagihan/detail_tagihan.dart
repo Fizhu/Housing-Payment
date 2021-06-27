@@ -23,28 +23,21 @@ class DetailTagihanPage extends StatelessWidget {
       );
 
   _content(BuildContext context) => SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 64.0),
-        child: ConstrainedBox(
-          constraints:
-              BoxConstraints(minHeight: Ext.matchParentHeight(context)),
-          child: IntrinsicHeight(
-            child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    'Rincian Tagihan ${Ext.parseStringDate(tagihan.date, Ext.DATE_FORMAT_MMMM_YYYY)}',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 24.0,
-                  ),
-                  WidgetTagihan.widgetContent(tagihan),
-                ],
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                'Rincian Tagihan ${Ext.parseStringDate(tagihan.date, Ext.DATE_FORMAT_MMMM_YYYY)}',
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-            ),
+              SizedBox(
+                height: 24.0,
+              ),
+              WidgetTagihan.widgetContent(tagihan),
+            ],
           ),
         ),
       );

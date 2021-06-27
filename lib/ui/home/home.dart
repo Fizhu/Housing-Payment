@@ -147,7 +147,6 @@ class _HomePageState extends State<HomePage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4.0)),
                     child: InkWell(
-                      splashColor: Colors.orangeAccent.withAlpha(30),
                       onTap: () {
                         onClickMenu(context, menu.id);
                       },
