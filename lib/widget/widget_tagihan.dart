@@ -26,7 +26,7 @@ class WidgetTagihan {
         style: TextStyle(fontSize: 12.0, color: Colors.red[200]),
       );
 
-  static _itemContent(String title, String value) => [
+  static List<Widget> _itemContent(String title, String value) => [
         _textTitle(title),
         SizedBox(
           height: 4.0,

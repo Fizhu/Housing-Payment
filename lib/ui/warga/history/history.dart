@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:housing_payment/data/models/data.dart';
+import 'package:housing_payment/ui/warga/detailtagihan/detail_tagihan.dart';
 import 'package:housing_payment/utils/ext.dart';
 
 class HistoryPage extends StatefulWidget {
@@ -65,7 +66,10 @@ class _HistoryPageState extends State<HistoryPage> {
           child: InkWell(
             splashColor: Colors.redAccent.withAlpha(30),
             onTap: () {
-              //handle onclick;
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DetailTagihanPage(tagihan: data)));
             },
             child: Column(
               children: [
