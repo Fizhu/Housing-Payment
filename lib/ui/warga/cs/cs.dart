@@ -12,7 +12,6 @@ class CsPage extends StatefulWidget {
 }
 
 class _CsPageState extends State<CsPage> {
-
   double _getHeight() {
     if (MediaQuery.of(context).orientation == Orientation.landscape) {
       return MediaQuery.of(context).size.height / 2;
@@ -21,74 +20,75 @@ class _CsPageState extends State<CsPage> {
     }
   }
 
+  Container _backButton(BuildContext context) => Container(
+        width: Ext.matchParentWidth(context),
+        alignment: Alignment.topLeft,
+        child: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: false,
       body: SafeArea(
-          child: SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: Ext.matchParentHeight(context)),
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: IntrinsicHeight(
+          child: Column(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _backButton(context),
+          Expanded(
+            child: Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        width: Ext.matchParentWidth(context),
-                        alignment: Alignment.topLeft,
-                        child: IconButton(
-                          icon: Icon(Icons.arrow_back),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
+                        height: _getHeight(),
+                        child: SvgPicture.asset(
+                          AppAssets.illust_voice_control,
+                          semanticsLabel: AppAssets.illust_voice_control,
                         ),
                       ),
-                      Expanded(
-                        child: Center(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: _getHeight(),
-                                child: SvgPicture.asset(
-                                  AppAssets.illust_voice_control,
-                                  semanticsLabel: AppAssets.illust_voice_control,
-                                ),
-                              ),
-                              SizedBox(height: 24.0,),
-                              Text(
-                                'Customer Service',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: 8.0,),
-                              Text('Untuk pengaduan dan pertanyaan seputar pembayaran, anda dapat menhubungi melalui WhatsApp ke nomor berikut :',
-                              textAlign: TextAlign.center,),
-                              SizedBox(height: 16.0,),
-                              Text(
-                                '0899-4660-004',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.red[200]
-                                ),
-                              ),
-                            ],
-                          ),
+                      SizedBox(
+                        height: 24.0,
+                      ),
+                      Text(
+                        'Customer Service',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
-                      )
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      Text(
+                        'Untuk pengaduan dan pertanyaan seputar pembayaran, anda dapat menhubungi melalui WhatsApp ke nomor berikut :',
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: 16.0,
+                      ),
+                      Text(
+                        '0899-4660-004',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.red[200]),
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
           )
-      ),
+        ],
+      )),
     );
   }
 }
