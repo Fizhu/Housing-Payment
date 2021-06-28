@@ -111,7 +111,8 @@ class Tagihan {
       this.name,
       this.username);
 
-  factory Tagihan.fromJson(Map<String, dynamic> json) => _$TagihanFromJson(json);
+  factory Tagihan.fromJson(Map<String, dynamic> json) =>
+      _$TagihanFromJson(json);
 
   Map<String, dynamic> toJson() => _$TagihanToJson(this);
 }
@@ -122,4 +123,24 @@ class HomeMenu {
   final String icon;
 
   HomeMenu(this.id, this.title, this.icon);
+}
+
+@JsonSerializable()
+class Inbox {
+  @JsonKey(name: 'id')
+  final int id;
+  @JsonKey(name: 'user_id')
+  final int user_id;
+  @JsonKey(name: 'title')
+  final String title;
+  @JsonKey(name: 'message')
+  final String message;
+  @JsonKey(name: 'date')
+  final String date;
+
+  Inbox(this.id, this.user_id, this.title, this.message, this.date);
+
+  factory Inbox.fromJson(Map<String, dynamic> json) => _$InboxFromJson(json);
+
+  Map<String, dynamic> toJson() => _$InboxToJson(this);
 }

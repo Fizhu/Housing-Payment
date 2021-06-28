@@ -95,3 +95,21 @@ Map<String, dynamic> _$TagihanToJson(Tagihan instance) => <String, dynamic>{
       'name': instance.name,
       'username': instance.username,
     };
+
+Inbox _$InboxFromJson(Map<String, dynamic> json) {
+  return Inbox(
+    json['id'] as int,
+    json['user_id'] as int,
+    json['title'] as String,
+    json['message'] as String,
+    json['date'] as String,
+  );
+}
+
+Map<String, dynamic> _$InboxToJson(Inbox instance) => <String, dynamic>{
+      'id': instance.id,
+      'user_id': instance.user_id,
+      'title': instance.title,
+      'message': instance.message,
+      'date': instance.date,
+    };
