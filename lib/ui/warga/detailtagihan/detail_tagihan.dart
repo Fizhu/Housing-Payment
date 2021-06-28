@@ -37,6 +37,17 @@ class DetailTagihanPage extends StatelessWidget {
                 height: 24.0,
               ),
               WidgetTagihan.widgetContent(tagihan),
+              SizedBox(
+                height: 24.0,
+              ),
+              Text(
+                'Status Pembayaran',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 16.0,
+              ),
+              WidgetTagihan.statusTagihan(context, tagihan)
             ],
           ),
         ),

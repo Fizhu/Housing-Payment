@@ -81,4 +81,50 @@ class WidgetTagihan {
     list.addAll(_itemContent("Grand Total", Ext.toRupiah(tagihan.grand_total)));
     return list;
   }
+
+  static statusTagihan(BuildContext context, Tagihan tagihan) {
+    if (tagihan.status == 0) {
+      return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(4.0)),
+          color: Colors.red[400],
+        ),
+        width: Ext.matchParentWidth(context),
+        padding: EdgeInsets.all(16.0),
+        child: Center(
+            child: Text(
+              'Belum Dibayar',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            )),
+      );
+    } else if (tagihan.status == 1) {
+      return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(4.0)),
+          color: Colors.blue[400],
+        ),
+        width: Ext.matchParentWidth(context),
+        padding: EdgeInsets.all(16.0),
+        child: Center(
+            child: Text(
+              'Menunggu Konfirmasi',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            )),
+      );
+    } else {
+      return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(4.0)),
+          color: Colors.green[400],
+        ),
+        width: Ext.matchParentWidth(context),
+        padding: EdgeInsets.all(16.0),
+        child: Center(
+            child: Text(
+              'Telah Dibayar',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            )),
+      );
+    }
+  }
 }
