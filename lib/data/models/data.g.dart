@@ -103,6 +103,7 @@ Inbox _$InboxFromJson(Map<String, dynamic> json) {
     json['title'] as String,
     json['message'] as String,
     json['date'] as String,
+    json['isExpanded'] as bool,
   );
 }
 
@@ -112,4 +113,5 @@ Map<String, dynamic> _$InboxToJson(Inbox instance) => <String, dynamic>{
       'title': instance.title,
       'message': instance.message,
       'date': instance.date,
+      'isExpanded': instance.isExpanded,
     };

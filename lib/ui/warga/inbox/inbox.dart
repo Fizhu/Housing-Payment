@@ -3,6 +3,7 @@ import 'package:housing_payment/data/models/data.dart';
 
 class InboxPage extends StatefulWidget {
   static const routeName = '/inbox';
+
   const InboxPage({Key? key}) : super(key: key);
 
   @override
@@ -10,70 +11,62 @@ class InboxPage extends StatefulWidget {
 }
 
 class _InboxPageState extends State<InboxPage> {
+  List<Inbox> list = [];
+
   @override
   Widget build(BuildContext context) {
+    list.clear();
+    list.addAll(_inboxDummy(15));
     return Scaffold(
       appBar: _appBar(),
       body: SafeArea(
-        child: ,
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Container(
+            child: _listNotif(),
+          ),
+        ),
       ),
     );
   }
 
   AppBar _appBar() => AppBar(
-    title: Text(
-        'Inbox'),
-  );
+        title: Text('Inbox'),
+      );
 
-  _listHistory(BuildContext context, List<Inbox> list) {
-    return ListView.builder(
-      itemBuilder: (BuildContext context, int index) {
-        var data = list[index];
-        return Container(
-          child: InkWell(
-            splashColor: Colors.redAccent.withAlpha(30),
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => DetailTagihanPage(tagihan: data)));
-            },
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.credit_card_rounded,
-                        color: Colors.white70,
-                      ),
-                      SizedBox(
-                        width: 16.0,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                              'Tagihan ${Ext.parseStringDate(data.date, Ext.DATE_FORMAT_MMMM_YYYY)}'),
-                          SizedBox(
-                            height: 4.0,
-                          ),
-                          _textStatus(data.status)
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                Divider(height: 2.0)
-              ],
-            ),
-          ),
-        );
+  _listNotif() {
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          list[index].isExpanded = !isExpanded;
+        });
       },
-      itemCount: list.length,
+      children: list.map<ExpansionPanel>((Inbox inbox) {
+        return ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return ListTile(
+              leading: Icon(
+                Icons.credit_card_rounded,
+                color: Colors.white70,
+              ),
+              title: Text(inbox.title),
+            );
+          },
+          body: ListTile(
+            title: Text(inbox.message),
+          ),
+          isExpanded: inbox.isExpanded,
+        );
+      }).toList(),
     );
   }
 
-
+  _inboxDummy(int total) {
+    List<Inbox> list = [];
+    for (; total >= 0; total--) {
+      list.add(Inbox(total, total, "Ini notif $total", "Ini Message nya $total",
+          '2021-05-15', false));
+    }
+    return list;
+  }
 }

@@ -7,6 +7,7 @@ import 'package:housing_payment/ui/login/login.dart';
 import 'package:housing_payment/ui/warga/cektagihan/tagihan.dart';
 import 'package:housing_payment/ui/warga/cs/cs.dart';
 import 'package:housing_payment/ui/warga/history/history.dart';
+import 'package:housing_payment/ui/warga/inbox/inbox.dart';
 
 import 'bloc/user/user_bloc.dart';
 import 'data/repository/app_repository.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
         CsPage.routeName: (context) => CsPage(),
         TagihanPage.routeName: (context) => TagihanPage(),
         HistoryPage.routeName: (context) => HistoryPage(),
+        InboxPage.routeName: (context) => InboxPage(),
       },
     );
   }

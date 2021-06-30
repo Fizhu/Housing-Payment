@@ -137,8 +137,9 @@ class Inbox {
   final String message;
   @JsonKey(name: 'date')
   final String date;
+  bool isExpanded = false;
 
-  Inbox(this.id, this.user_id, this.title, this.message, this.date);
+  Inbox(this.id, this.user_id, this.title, this.message, this.date, this.isExpanded);
 
   factory Inbox.fromJson(Map<String, dynamic> json) => _$InboxFromJson(json);
 
