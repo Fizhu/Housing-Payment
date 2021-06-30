@@ -60,6 +60,7 @@ class _HistoryPageState extends State<HistoryPage> {
 
   _listHistory(BuildContext context, List<Tagihan> list) {
     return ListView.builder(
+      physics: BouncingScrollPhysics(),
       itemBuilder: (BuildContext context, int index) {
         var data = list[index];
         return Container(

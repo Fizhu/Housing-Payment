@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:housing_payment/data/models/data.dart';
+import 'package:housing_payment/utils/ext.dart';
 
 class InboxPage extends StatefulWidget {
   static const routeName = '/inbox';
@@ -14,9 +16,14 @@ class _InboxPageState extends State<InboxPage> {
   List<Inbox> list = [];
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     list.clear();
     list.addAll(_inboxDummy(15));
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
       body: SafeArea(
@@ -41,6 +48,7 @@ class _InboxPageState extends State<InboxPage> {
           list[index].isExpanded = !isExpanded;
         });
       },
+      expandedHeaderPadding: const EdgeInsets.all(0.0),
       children: list.map<ExpansionPanel>((Inbox inbox) {
         return ExpansionPanel(
           headerBuilder: (BuildContext context, bool isExpanded) {
@@ -52,8 +60,25 @@ class _InboxPageState extends State<InboxPage> {
               title: Text(inbox.title),
             );
           },
-          body: ListTile(
-            title: Text(inbox.message),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  inbox.message,
+                  style: TextStyle(fontSize: 14.0),
+                ),
+                Container(
+                  width: double.infinity,
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    Ext.parseStringDate(inbox.date, Ext.DATE_FORMAT_DD_MM_YYY),
+                    style: TextStyle(color: Colors.white70, fontSize: 12.0),
+                  ),
+                )
+              ],
+            ),
           ),
           isExpanded: inbox.isExpanded,
         );

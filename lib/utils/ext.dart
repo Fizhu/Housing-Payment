@@ -65,4 +65,5 @@ class Ext {
   }
 
   static const DATE_FORMAT_MMMM_YYYY = 'MMMM yyyy';
+  static const DATE_FORMAT_DD_MM_YYY = 'dd-MM-yyyy';
 }
